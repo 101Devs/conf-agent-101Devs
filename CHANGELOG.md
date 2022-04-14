@@ -21,4 +21,5 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 ### Added
 - Initial released version
 
-[v0.0.2]: https://github.com/bfenetworks/conf-agent/compa
+[v0.0.2]: https://github.com/bfenetworks/conf-agent/compare/v0.0.1...v0.0.2
+[v0.0.1]: https://github.com/bfenetworks/conf-agent/releases/tag/v0.0.1
