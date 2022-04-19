@@ -22,4 +22,9 @@ GOPATH  := $(shell $(GO) env GOPATH)
 GOMOD   := $(GO) mod
 GOBUILD := $(GO) build
 GOTEST  := $(GO) test -gcflags="-N -l"
-GOPKGS  := $$($(GO) list ./...| gre
+GOPKGS  := $$($(GO) list ./...| grep -vE "vendor")
+LICENSEEYE   := license-eye
+
+# test cover files
+COVPROF := $(HOMEDIR)/covprof.out  # coverage profile
+COVFUNC := $(HOMEDIR)
