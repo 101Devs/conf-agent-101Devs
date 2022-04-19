@@ -18,4 +18,8 @@ OUTDIR  := $(HOMEDIR)/output
 
 # init command params
 GO      := $(GO_1_16_BIN)go
-GOPATH  := $(she
+GOPATH  := $(shell $(GO) env GOPATH)
+GOMOD   := $(GO) mod
+GOBUILD := $(GO) build
+GOTEST  := $(GO) test -gcflags="-N -l"
+GOPKGS  := $$($(GO) list ./...| gre
