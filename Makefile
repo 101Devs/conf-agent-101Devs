@@ -48,4 +48,12 @@ build: prepare
 
 # make test, test your code
 test: prepare test-case
-test
+test-case:
+	$(GOTEST) -v -cover $(GOPKGS)
+
+# make package
+package: package-bin
+package-bin:
+	mkdir -p 		$(OUTDIR)
+	cp -rf  conf 	$(OUTDIR)/
+	cp -rf  docs
