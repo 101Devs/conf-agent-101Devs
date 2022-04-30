@@ -27,4 +27,5 @@ LICENSEEYE   := license-eye
 
 # test cover files
 COVPROF := $(HOMEDIR)/covprof.out  # coverage profile
-COVFUNC := $(HOMEDIR)
+COVFUNC := $(HOMEDIR)/covfunc.txt  # coverage profile information for each function
+COVHTML := $(HOMEDIR)/covhtml.html # HTML representation of covera
