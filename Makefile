@@ -28,4 +28,16 @@ LICENSEEYE   := license-eye
 # test cover files
 COVPROF := $(HOMEDIR)/covprof.out  # coverage profile
 COVFUNC := $(HOMEDIR)/covfunc.txt  # coverage profile information for each function
-COVHTML := $(HOMEDIR)/covhtml.html # HTML representation of covera
+COVHTML := $(HOMEDIR)/covhtml.html # HTML representation of coverage profile
+
+# make, make all
+all: prepare compile test package
+
+
+#make prepare, download dependencies
+prepare: gomod
+
+gomod: 
+	$(GOMOD) download
+
+#make compile
