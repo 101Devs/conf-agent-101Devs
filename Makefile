@@ -41,3 +41,11 @@ gomod:
 	$(GOMOD) download
 
 #make compile
+compile: build
+
+build: prepare
+	$(GOBUILD) -o $(HOMEDIR)/conf-agent
+
+# make test, test your code
+test: prepare test-case
+test
