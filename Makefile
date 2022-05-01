@@ -56,4 +56,9 @@ package: package-bin
 package-bin:
 	mkdir -p 		$(OUTDIR)
 	cp -rf  conf 	$(OUTDIR)/
-	cp -rf  docs
+	cp -rf  docs 	$(OUTDIR)/
+	mv conf-agent  	$(OUTDIR)/
+
+# make license-eye-install
+license-eye-install:
+	$(GO) install github.com/apache/skywalki
