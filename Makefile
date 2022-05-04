@@ -61,4 +61,8 @@ package-bin:
 
 # make license-eye-install
 license-eye-install:
-	$(GO) install github.com/apache/skywalki
+	$(GO) install github.com/apache/skywalking-eyes/cmd/license-eye@latest
+
+# make license-check, check code file's license declaration
+license-check: license-eye-install
+	$(LICENSEEYE) heade
