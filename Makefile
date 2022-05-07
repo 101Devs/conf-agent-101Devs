@@ -65,4 +65,11 @@ license-eye-install:
 
 # make license-check, check code file's license declaration
 license-check: license-eye-install
-	$(LICENSEEYE) heade
+	$(LICENSEEYE) header check
+
+# make license-fix, fix code file's license declaration
+license-fix: license-eye-install
+	$(LICENSEEYE) header fix
+
+# make clean
+clean:
