@@ -73,3 +73,9 @@ license-fix: license-eye-install
 
 # make clean
 clean:
+	$(GO) clean
+	rm -rf $(OUTDIR)
+	rm -rf $(HOMEDIR)/conf-agent
+
+# avoid filename conflict and speed up build 
+.PHONY: all prepare compile test package clean build
