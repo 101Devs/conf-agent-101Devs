@@ -16,4 +16,10 @@ package agent
 
 import (
 	"github.com/baidu/conf-agent/conf_reload"
-	"githu
+	"github.com/baidu/conf-agent/config"
+)
+
+// The Agent keep reloaders.
+// Agent Start will start all reloaders
+type Agent struct {
+	stop chan bool
