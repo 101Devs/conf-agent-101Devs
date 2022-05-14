@@ -23,3 +23,9 @@ import (
 // Agent Start will start all reloaders
 type Agent struct {
 	stop chan bool
+
+	reloaders []*conf_reload.Reloader
+}
+
+// New create a Agent according to config
+func New(rcs []*config.ReloaderConfig) (*Agent, error) {
