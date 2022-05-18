@@ -45,4 +45,13 @@ func New(rcs []*config.ReloaderConfig) (*Agent, error) {
 }
 
 func (agent *Agent) Start() {
-	for _, reloader := 
+	for _, reloader := range agent.reloaders {
+		go reloader.Start()
+	}
+
+	<-agent.stop
+}
+
+func (agent *Agent) Stop() {
+	agent.stop <- true
+}
