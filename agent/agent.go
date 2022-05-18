@@ -35,4 +35,14 @@ func New(rcs []*config.ReloaderConfig) (*Agent, error) {
 	for _, mc := range rcs {
 		m, err := conf_reload.NewReloader(mc)
 		if err != nil {
-			
+			return nil, err
+		}
+
+		agent.reloaders = append(agent.reloaders, m)
+	}
+
+	return agent, nil
+}
+
+func (agent *Agent) Start() {
+	for _, reloader := 
