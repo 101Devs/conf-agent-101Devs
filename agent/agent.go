@@ -29,3 +29,10 @@ type Agent struct {
 
 // New create a Agent according to config
 func New(rcs []*config.ReloaderConfig) (*Agent, error) {
+	agent := &Agent{
+		stop: make(chan bool),
+	}
+	for _, mc := range rcs {
+		m, err := conf_reload.NewReloader(mc)
+		if err != nil {
+			
