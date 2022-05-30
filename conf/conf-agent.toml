@@ -4,4 +4,10 @@ LogName     = "conf_agent"
 LogLevel    = "INFO"
 RotateWhen  = "MIDNIGHT"
 BackupCount = 2
-Format      = "[%D %T] [%L] [%
+Format      = "[%D %T] [%L] [%S] %M"
+StdOut      = false
+
+[Basic]
+BFECluster              = "{BFECluster}"
+BFEConfDir              = "/home/work/bfe/conf"
+BFEMonitorPort          = 84
