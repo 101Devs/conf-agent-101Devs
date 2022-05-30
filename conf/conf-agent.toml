@@ -10,4 +10,10 @@ StdOut      = false
 [Basic]
 BFECluster              = "{BFECluster}"
 BFEConfDir              = "/home/work/bfe/conf"
-BFEMonitorPort          = 84
+BFEMonitorPort          = 8421
+BFEReloadTimeoutMs      = 1500
+
+ReloadIntervalMs        = 5000
+
+ConfServer              = "http://127.0.0.1:8183"
+# Token 获取参考 https://github.com
