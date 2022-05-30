@@ -1,2 +1,7 @@
 [Logger]
-LogDir      = "./l
+LogDir      = "./log/"
+LogName     = "conf_agent"
+LogLevel    = "INFO"
+RotateWhen  = "MIDNIGHT"
+BackupCount = 2
+Format      = "[%D %T] [%L] [%
