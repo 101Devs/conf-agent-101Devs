@@ -17,4 +17,7 @@ ReloadIntervalMs        = 5000
 
 ConfServer              = "http://127.0.0.1:8183"
 # Token 获取参考 https://github.com/bfenetworks/dashboard/blob/develop/docs/zh-cn/user-guide/system-view/user-management.md#token%E7%AE%A1%E7%90%86
-Con
+ConfTaskHeaders         = {"Authorization" = "Token {Token}"}
+ConfTaskTimeoutMs       = 1500
+
+ExtraFileServer         = "http://127.0.0.1:8183/inner-api
