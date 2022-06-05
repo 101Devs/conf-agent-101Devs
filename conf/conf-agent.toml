@@ -31,4 +31,6 @@ ExtraFileTaskTimeoutMs  = 1500
 CopyFiles       = ["cluster_conf.data", "host_rule.data", "name_conf.data", "route_rule.data", "vip_rule.data"]
 [[Reloaders.server_data_conf.MultiKeyFileTasks]]
 ConfAPI         = "/inner-api/v1/configs/tls_conf/server_data_conf"
-Key2ConfFile    = {"HostTable" = "host_
+Key2ConfFile    = {"HostTable" = "host_rule.data", "RouteTable" = "route_rule.data", "ClusterConf" = "cluster_conf.data"}
+
+# # reloader for cluster_conf files, detail s
