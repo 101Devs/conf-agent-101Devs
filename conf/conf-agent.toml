@@ -29,4 +29,6 @@ ExtraFileTaskTimeoutMs  = 1500
 # reloader for server_data_config files, detail see https://www.bfe-networks.net/en_us/configuration/server_data_conf/host_rule.data/
 [Reloaders.server_data_conf]
 CopyFiles       = ["cluster_conf.data", "host_rule.data", "name_conf.data", "route_rule.data", "vip_rule.data"]
-[[Reloaders.server_da
+[[Reloaders.server_data_conf.MultiKeyFileTasks]]
+ConfAPI         = "/inner-api/v1/configs/tls_conf/server_data_conf"
+Key2ConfFile    = {"HostTable" = "host_
