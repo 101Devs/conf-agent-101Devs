@@ -23,4 +23,8 @@ ConfTaskTimeoutMs       = 1500
 ExtraFileServer         = "http://127.0.0.1:8183/inner-api/v1/configs/extra_files/"
 # Token 获取参考 https://github.com/bfenetworks/dashboard/blob/develop/docs/zh-cn/user-guide/system-view/user-management.md#token%E7%AE%A1%E7%90%86
 ExtraFileTaskHeaders    = {"Authorization" = "Token {Token}"}
-ExtraFileTaskTimeoutMs  = 15
+ExtraFileTaskTimeoutMs  = 1500
+
+
+# reloader for server_data_config files, detail see https://www.bfe-networks.net/en_us/configuration/server_data_conf/host_rule.data/
+[Reloaders.ser
