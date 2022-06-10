@@ -36,4 +36,6 @@ Key2ConfFile    = {"HostTable" = "host_rule.data", "RouteTable" = "route_rule.da
 # # reloader for cluster_conf files, detail see https://www.bfe-networks.net/en_us/configuration/cluster_conf/gslb.data/
 [Reloaders.cluster_conf]
 BFEReloadAPI    = "/reload/gslb_data_conf"
-Co
+CopyFiles       = ["cluster_table.data", "gslb.data"]
+[[Reloaders.cluster_conf.NormalFileTasks]]
+ConfAPI         = "/inner-api/v1/configs/gslb_dat
