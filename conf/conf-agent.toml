@@ -38,4 +38,7 @@ Key2ConfFile    = {"HostTable" = "host_rule.data", "RouteTable" = "route_rule.da
 BFEReloadAPI    = "/reload/gslb_data_conf"
 CopyFiles       = ["cluster_table.data", "gslb.data"]
 [[Reloaders.cluster_conf.NormalFileTasks]]
-ConfAPI         = "/inner-api/v1/configs/gslb_dat
+ConfAPI         = "/inner-api/v1/configs/gslb_data/cluster_table"
+ConfFileName    = "cluster_table.data"
+[[Reloaders.cluster_conf.NormalFileTasks]]
+ConfAPI         = "/inner-api/v1/c
