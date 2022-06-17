@@ -44,4 +44,6 @@ ConfFileName    = "cluster_table.data"
 ConfAPI         = "/inner-api/v1/configs/gslb_data/gslb"
 ConfFileName    = "gslb.data"
 
-# # reloader for tls_conf files, detail see https://www.bfe-networks.ne
+# # reloader for tls_conf files, detail see https://www.bfe-networks.net/en_us/configuration/tls_conf/server_cert_conf.data/
+[Reloaders.tls_conf]
+CopyFiles      = ["client_ca", "client_crl", "server_cert_conf.data", "s
