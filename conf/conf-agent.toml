@@ -50,4 +50,4 @@ CopyFiles      = ["client_ca", "client_crl", "server_cert_conf.data", "session_t
 [[Reloaders.tls_conf.ExtraFileTasks]]
 ConfAPI             = "/inner-api/v1/configs/protocol/server_cert_conf"
 ConfFileName        = "server_cert_conf.data"
-ExtraFileJSONPaths  = ["$.Config.CertConf.*.ServerCertFile", "$.Config.CertConf.*.ServerKe
+ExtraFileJSONPaths  = ["$.Config.CertConf.*.ServerCertFile", "$.Config.CertConf.*.ServerKeyFile"]
