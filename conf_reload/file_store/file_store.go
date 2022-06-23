@@ -122,3 +122,10 @@ func (fileStore *FileStore) StoreFile2TmpDir(ctx context.Context, version string
 			xlog.Default.Error(xlog.ErrLogFormat(ctx, "fileStore.FileOverwrite", err))
 			return err
 		}
+
+		// xlog.Default.Debug(xlog.InfoLogFormat(ctx, "fileStore.FileOverwrite", "fileName: ", fileName,
+		// 	" fileContent: ", string(fileContent)))
+	}
+
+	return nil
+}
