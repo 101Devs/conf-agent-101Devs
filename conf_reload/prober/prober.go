@@ -20,3 +20,14 @@ import (
 
 	"github.com/baidu/conf-agent/config"
 )
+
+type FetchFileResult struct {
+	Name    string
+	Version string
+	Content []byte
+}
+
+type commonConfig struct {
+	BFECluster string
+
+	ConfTaskHe
