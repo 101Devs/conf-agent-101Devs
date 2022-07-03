@@ -30,4 +30,9 @@ type FetchFileResult struct {
 type commonConfig struct {
 	BFECluster string
 
-	ConfTaskHe
+	ConfTaskHeaders map[string]string
+	ConfTaskTimeout time.Duration
+}
+
+type Task interface {
+	FetchConfFiles(ctx context.Context
