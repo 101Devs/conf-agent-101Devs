@@ -48,4 +48,13 @@ func (prober *Prober) Probe(ctx context.Context) ([]*FetchFileResult, error) {
 	for _, p := range prober.tasks {
 		fileList, err := p.FetchConfFiles(ctx)
 		if err != nil {
-	
+			return nil, err
+		}
+
+		result = append(fileList, result...)
+	}
+
+	return result, nil
+}
+
+func NewProber(nfts []*config.NormalFileTaskConfig, mfts []*config
