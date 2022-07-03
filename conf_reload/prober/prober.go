@@ -43,4 +43,9 @@ type Prober struct {
 }
 
 func (prober *Prober) Probe(ctx context.Context) ([]*FetchFileResult, error) {
-	r
+	result := []*FetchFileResult{}
+
+	for _, p := range prober.tasks {
+		fileList, err := p.FetchConfFiles(ctx)
+		if err != nil {
+	
