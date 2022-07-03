@@ -35,4 +35,12 @@ type commonConfig struct {
 }
 
 type Task interface {
-	FetchConfFiles(ctx context.Context
+	FetchConfFiles(ctx context.Context) ([]*FetchFileResult, error)
+}
+
+type Prober struct {
+	tasks []Task
+}
+
+func (prober *Prober) Probe(ctx context.Context) ([]*FetchFileResult, error) {
+	r
