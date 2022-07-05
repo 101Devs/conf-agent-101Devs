@@ -57,4 +57,8 @@ func (prober *Prober) Probe(ctx context.Context) ([]*FetchFileResult, error) {
 	return result, nil
 }
 
-func NewProber(nfts []*config.NormalFileTaskConfig, mfts []*config
+func NewProber(nfts []*config.NormalFileTaskConfig, mfts []*config.MultiJSONKeyFileTaskConfig,
+	efts []*config.ExtraFileTaskConfig) (*Prober, error) {
+	prober := &Prober{}
+
+	for _, t := range 
