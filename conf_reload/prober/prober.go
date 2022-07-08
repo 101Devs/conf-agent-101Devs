@@ -85,4 +85,5 @@ func NewProber(nfts []*config.NormalFileTaskConfig, mfts []*config.MultiJSONKeyF
 		prober.tasks = append(prober.tasks, p)
 	}
 
-	return prob
+	return prober, nil
+}
