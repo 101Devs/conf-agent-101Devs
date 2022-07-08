@@ -75,3 +75,14 @@ func NewProber(nfts []*config.NormalFileTaskConfig, mfts []*config.MultiJSONKeyF
 			return nil, err
 		}
 		prober.tasks = append(prober.tasks, p)
+	}
+
+	for _, t := range efts {
+		p, err := NewExtraFileTask(*t)
+		if err != nil {
+			return nil, err
+		}
+		prober.tasks = append(prober.tasks, p)
+	}
+
+	return prob
