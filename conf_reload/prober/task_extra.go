@@ -32,4 +32,7 @@ type ExtraFileTask struct {
 	normalFileTask *NormalFileTask
 }
 
-func NewExtraFileTask(c co
+func NewExtraFileTask(c config.ExtraFileTaskConfig) (*ExtraFileTask, error) {
+	np, err := NewNormalFileTask(c.NormalFileTaskConfig)
+	if err != nil {
+		retu
