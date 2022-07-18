@@ -23,4 +23,13 @@ import (
 	"github.com/baidu/conf-agent/config"
 	"github.com/baidu/conf-agent/xhttp"
 	"github.com/baidu/conf-agent/xlog"
-	"github.com/ohle
+	"github.com/ohler55/ojg/oj"
+)
+
+type ExtraFileTask struct {
+	config config.ExtraFileTaskConfig
+
+	normalFileTask *NormalFileTask
+}
+
+func NewExtraFileTask(c co
