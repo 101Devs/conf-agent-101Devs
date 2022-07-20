@@ -35,4 +35,14 @@ type ExtraFileTask struct {
 func NewExtraFileTask(c config.ExtraFileTaskConfig) (*ExtraFileTask, error) {
 	np, err := NewNormalFileTask(c.NormalFileTaskConfig)
 	if err != nil {
-		retu
+		return nil, err
+	}
+
+	return &ExtraFileTask{
+		config: c,
+
+		normalFileTask: np,
+	}, nil
+}
+
+func (task *ExtraFileTask) FetchConfFiles(
