@@ -45,4 +45,7 @@ func NewExtraFileTask(c config.ExtraFileTaskConfig) (*ExtraFileTask, error) {
 	}, nil
 }
 
-func (task *ExtraFileTask) FetchConfFiles(
+func (task *ExtraFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResult, error) {
+	fileList, err := task.normalFileTask.FetchConfFiles(ctx)
+	if err != nil {
+		re
