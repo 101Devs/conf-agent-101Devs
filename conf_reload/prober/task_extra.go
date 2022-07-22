@@ -48,4 +48,12 @@ func NewExtraFileTask(c config.ExtraFileTaskConfig) (*ExtraFileTask, error) {
 func (task *ExtraFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResult, error) {
 	fileList, err := task.normalFileTask.FetchConfFiles(ctx)
 	if err != nil {
-		re
+		return nil, err
+	}
+
+	if len(fileList) == 0 {
+		return fileList, err
+	}
+
+	// analysis file content, obtain extra files
+	extraFiles, e
