@@ -56,4 +56,9 @@ func (task *ExtraFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResu
 	}
 
 	// analysis file content, obtain extra files
-	extraFiles, e
+	extraFiles, err := task.obtainExtraFiles(ctx, fileList[0].Content)
+	if err != nil {
+		return nil, err
+	}
+
+	for remotePath, localPath := range ex
