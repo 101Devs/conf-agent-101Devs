@@ -61,4 +61,10 @@ func (task *ExtraFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResu
 		return nil, err
 	}
 
-	for remotePath, localPath := range ex
+	for remotePath, localPath := range extraFiles {
+		fileContent, err := task.obtainExtraFile(ctx, remotePath)
+		if err != nil {
+			return nil, err
+		}
+
+		fileList = append(fileList, &
