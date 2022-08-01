@@ -76,4 +76,6 @@ func (task *ExtraFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResu
 	return fileList, err
 }
 
-// convert {module}_{version}/xxxx t
+// convert {module}_{version}/xxxx to {module}/xxxx and xxxx
+func removeDirVersionInfo(fileName string) (remotePath, localPath string, err error) {
+	slashIndex := strings.I
