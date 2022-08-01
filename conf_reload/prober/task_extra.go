@@ -67,4 +67,13 @@ func (task *ExtraFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResu
 			return nil, err
 		}
 
-		fileList = append(fileList, &
+		fileList = append(fileList, &FetchFileResult{
+			Name:    localPath,
+			Content: fileContent,
+		})
+	}
+
+	return fileList, err
+}
+
+// convert {module}_{version}/xxxx t
