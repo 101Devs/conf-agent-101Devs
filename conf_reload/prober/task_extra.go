@@ -83,4 +83,7 @@ func removeDirVersionInfo(fileName string) (remotePath, localPath string, err er
 		return "", "", fmt.Errorf("want format {module}_{version}/xxxx")
 	}
 
-	moduleWithV
+	moduleWithVersion := fileName[:slashIndex]
+	underlineIndex := strings.LastIndex(moduleWithVersion, "_")
+	if underlineIndex == -1 {
+		return "", 
