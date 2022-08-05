@@ -105,4 +105,9 @@ func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent [
 		return nil, err
 	}
 
-	remotePath2localPath := map[string]stri
+	remotePath2localPath := map[string]string{}
+	for _, pattern := range prober.config.JSONPaths {
+		results := pattern.Get(jsonData)
+
+		for _, result := range results {
+			fil
