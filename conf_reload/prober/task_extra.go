@@ -99,4 +99,10 @@ func removeDirVersionInfo(fileName string) (remotePath, localPath string, err er
 func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent []byte) (map[string]string, error) {
 	jsonData, err := oj.Parse(fileContent)
 	if err != nil {
-		err = fmt.Errorf("parse fail, content: %s, err: %v", string(fileC
+		err = fmt.Errorf("parse fail, content: %s, err: %v", string(fileContent), err)
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "TaskExtraFile.parse", err))
+
+		return nil, err
+	}
+
+	remotePath2localPath := map[string]stri
