@@ -96,4 +96,7 @@ func removeDirVersionInfo(fileName string) (remotePath, localPath string, err er
 	return moduleWithVersion[:underlineIndex] + fileName[slashIndex:], fileName[slashIndex+1:], nil
 }
 
-func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent []byte) (map[string]st
+func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent []byte) (map[string]string, error) {
+	jsonData, err := oj.Parse(fileContent)
+	if err != nil {
+		err = fmt.Errorf("parse fail, content: %s, err: %v", string(fileC
