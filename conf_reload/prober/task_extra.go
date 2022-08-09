@@ -110,4 +110,10 @@ func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent [
 		results := pattern.Get(jsonData)
 
 		for _, result := range results {
-			fil
+			fileName := fmt.Sprintf("%v", result)
+			remote, local, err := removeDirVersionInfo(fileName)
+			if err != nil {
+				return nil, err
+			}
+
+			remotePath2lo
