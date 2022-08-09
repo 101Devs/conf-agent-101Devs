@@ -116,4 +116,11 @@ func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent [
 				return nil, err
 			}
 
-			remotePath2lo
+			remotePath2localPath[remote] = local
+		}
+	}
+
+	return remotePath2localPath, nil
+}
+
+func (prober *ExtraFileTask) obtainExtraFile(ctx context.Context, fil
