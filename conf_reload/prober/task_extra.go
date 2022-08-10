@@ -123,4 +123,9 @@ func (prober *ExtraFileTask) obtainExtraFiles(ctx context.Context, fileContent [
 	return remotePath2localPath, nil
 }
 
-func (prober *ExtraFileTask) obtainExtraFile(ctx context.Context, fil
+func (prober *ExtraFileTask) obtainExtraFile(ctx context.Context, fileName string) (raw []byte, err error) {
+	config := prober.config
+
+	req := xhttp.NewHTTPRequest().
+		Decorate(
+			xhttp.SimpleRequestOp(http
