@@ -128,4 +128,6 @@ func (prober *ExtraFileTask) obtainExtraFile(ctx context.Context, fileName strin
 
 	req := xhttp.NewHTTPRequest().
 		Decorate(
-			xhttp.SimpleRequestOp(http
+			xhttp.SimpleRequestOp(http.MethodGet, config.ExtraFileServer+fileName, nil),
+			xhttp.HTTPRequestTimeoutOp(config.ExtraFileTaskTimeout),
+			xhttp.HTTPRequ
