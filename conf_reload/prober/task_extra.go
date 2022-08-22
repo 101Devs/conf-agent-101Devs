@@ -130,4 +130,11 @@ func (prober *ExtraFileTask) obtainExtraFile(ctx context.Context, fileName strin
 		Decorate(
 			xhttp.SimpleRequestOp(http.MethodGet, config.ExtraFileServer+fileName, nil),
 			xhttp.HTTPRequestTimeoutOp(config.ExtraFileTaskTimeout),
-			xhttp.HTTPRequ
+			xhttp.HTTPRequestHeaderOp(config.ExtraFileTaskHeaders)).
+		Do().
+		Decorate(
+			xhttp.RspBodyRawReaderOp,
+			xhttp.RspCode200Op,
+		)
+
+	err = r
