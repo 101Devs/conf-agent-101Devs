@@ -137,4 +137,12 @@ func (prober *ExtraFileTask) obtainExtraFile(ctx context.Context, fileName strin
 			xhttp.RspCode200Op,
 		)
 
-	err = r
+	err = req.Err()
+	if err != nil {
+		return
+	}
+
+	raw = req.RawContent
+
+	return
+}
