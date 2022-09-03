@@ -16,3 +16,11 @@ package prober
 
 import (
 	"context"
+	"encoding/json"
+	"path"
+
+	"github.com/baidu/conf-agent/config"
+	"github.com/baidu/conf-agent/xlog"
+)
+
+type MultiKeyFileTask struct 
