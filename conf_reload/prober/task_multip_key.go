@@ -23,4 +23,10 @@ import (
 	"github.com/baidu/conf-agent/xlog"
 )
 
-type MultiKeyFileTask struct 
+type MultiKeyFileTask struct {
+	config config.MultiJSONKeyFileTaskConfig
+
+	commonConfig commonConfig
+}
+
+func NewMultiKeyFileTask(c config.MultiJSONKeyFileTaskConfig) (
