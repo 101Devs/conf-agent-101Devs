@@ -40,4 +40,8 @@ func NewMultiKeyFileTask(c config.MultiJSONKeyFileTaskConfig) (*MultiKeyFileTask
 	}, nil
 }
 
-func (task *MultiKeyFileTask) Fe
+func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileResult, error) {
+	config := task.config
+
+	localVersion := ""
+	for _, fileName := range 
