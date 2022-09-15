@@ -29,4 +29,8 @@ type MultiKeyFileTask struct {
 	commonConfig commonConfig
 }
 
-func NewMultiKeyFileTask(c config.MultiJSONKeyFileTaskConfig) (
+func NewMultiKeyFileTask(c config.MultiJSONKeyFileTaskConfig) (*MultiKeyFileTask, error) {
+	return &MultiKeyFileTask{
+		config: c,
+		commonConfig: commonConfig{
+			BFECluster:      c.BFEClu
