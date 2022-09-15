@@ -33,4 +33,11 @@ func NewMultiKeyFileTask(c config.MultiJSONKeyFileTaskConfig) (*MultiKeyFileTask
 	return &MultiKeyFileTask{
 		config: c,
 		commonConfig: commonConfig{
-			BFECluster:      c.BFEClu
+			BFECluster:      c.BFECluster,
+			ConfTaskHeaders: c.ConfTaskHeaders,
+			ConfTaskTimeout: c.ConfTaskTimeout,
+		},
+	}, nil
+}
+
+func (task *MultiKeyFileTask) Fe
