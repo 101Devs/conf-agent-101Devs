@@ -44,4 +44,10 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 	config := task.config
 
 	localVersion := ""
-	for _, fileName := range 
+	for _, fileName := range config.Key2ConfFile {
+		version, err := loadLocalVersion(path.Join(config.ConfDir, fileName))
+		if err != nil {
+			return nil, err
+		}
+
+		if version
