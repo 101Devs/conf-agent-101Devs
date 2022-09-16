@@ -50,4 +50,10 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 			return nil, err
 		}
 
-		if version
+		if version > localVersion {
+			localVersion = version
+		}
+	}
+
+	// obtain config data
+	raw, err := obtainRemoteConfig(ctx, task.comm
