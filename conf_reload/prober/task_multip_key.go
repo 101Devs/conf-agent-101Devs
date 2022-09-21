@@ -56,4 +56,9 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 	}
 
 	// obtain config data
-	raw, err := obtainRemoteConfig(ctx, task.comm
+	raw, err := obtainRemoteConfig(ctx, task.commonConfig, config.ConfAPI, localVersion)
+	if err != nil {
+		return nil, err
+	}
+
+	// if no newer config, conf server will retu
