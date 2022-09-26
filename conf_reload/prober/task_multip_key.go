@@ -61,4 +61,10 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 		return nil, err
 	}
 
-	// if no newer config, conf server will retu
+	// if no newer config, conf server will return null
+	if raw == nil {
+		return nil, nil
+	}
+
+	rawMap := map[string]json.RawMessage{}
+	if err = json.Unmarshal(raw, &rawMap); e
