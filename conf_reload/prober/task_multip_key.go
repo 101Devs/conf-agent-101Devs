@@ -67,4 +67,9 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 	}
 
 	rawMap := map[string]json.RawMessage{}
-	if err = json.Unmarshal(raw, &rawMap); e
+	if err = json.Unmarshal(raw, &rawMap); err != nil {
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "obtainRemoteConfig.Unmarshal", err))
+		return nil, err
+	}
+	if rawMap == nil {
+		return nil, n
