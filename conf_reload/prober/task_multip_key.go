@@ -72,4 +72,10 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 		return nil, err
 	}
 	if rawMap == nil {
-		return nil, n
+		return nil, nil
+	}
+
+	var fileList []*FetchFileResult
+	for key, fileName := range config.Key2ConfFile {
+		fileContent, ok := rawMap[key]
+		i
