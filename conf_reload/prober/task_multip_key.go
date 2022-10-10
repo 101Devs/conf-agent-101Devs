@@ -83,4 +83,10 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 			continue
 		}
 
-		version, err := calculateVersio
+		version, err := calculateVersion(fileContent)
+		if err != nil {
+			return nil, err
+		}
+
+		fileList = append(fileList, &FetchFileResult{
+			Name:  
