@@ -89,4 +89,12 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 		}
 
 		fileList = append(fileList, &FetchFileResult{
-			Name:  
+			Name:    fileName,
+			Version: version,
+			Content: fileContent,
+		})
+	}
+
+	return fileList, nil
+
+}
