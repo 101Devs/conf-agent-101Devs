@@ -78,4 +78,9 @@ func (task *MultiKeyFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileR
 	var fileList []*FetchFileResult
 	for key, fileName := range config.Key2ConfFile {
 		fileContent, ok := rawMap[key]
-		i
+		if !ok {
+			xlog.Default.Info(xlog.InfoLogFormat(ctx, "Key2ConfFile key not exist ", key))
+			continue
+		}
+
+		version, err := calculateVersio
