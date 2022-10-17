@@ -19,3 +19,16 @@ import "testing"
 func Test_justKeepNumber(t *testing.T) {
 	tests := []struct {
 		name string
+		s    string
+		want string
+	}{
+		{
+			s:    "123",
+			want: "123",
+		},
+		{
+			s:    "123 ",
+			want: "123",
+		},
+		{
+			s:   
