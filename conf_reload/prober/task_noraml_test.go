@@ -31,4 +31,14 @@ func Test_justKeepNumber(t *testing.T) {
 			want: "123",
 		},
 		{
-			s:   
+			s:    "12 3",
+			want: "123",
+		},
+		{
+			s:    "w123",
+			want: "123",
+		},
+		{
+			s:    "我啊123",
+			want: "123",
+	
