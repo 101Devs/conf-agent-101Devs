@@ -55,4 +55,7 @@ func Test_justKeepNumber(t *testing.T) {
 			want: "",
 		},
 	}
-	for _, t
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			if got := justKeepNumber(tt.s); got != tt.want {
+				t.Errorf("justKeepNum
