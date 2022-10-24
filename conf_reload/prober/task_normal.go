@@ -81,3 +81,86 @@ func (task *NormalFileTask) FetchConfFiles(ctx context.Context) ([]*FetchFileRes
 			Content: raw,
 		},
 	}, nil
+}
+
+func obtainRemoteConfig(ctx context.Context, config commonConfig, apiURL, localVersion string) ([]byte, error) {
+	/* response data look like:
+	{
+		"ErrNum": 200,
+		"Data": {
+
+		}
+	}
+	*/
+	rsp := &struct {
+		ErrNum int
+		Data   json.RawMessage
+	}{}
+
+	params := url.Values{}
+	params.Add("version", localVersion)
+	params.Add("bfe_cluster", config.BFECluster)
+	requestURL := apiURL + "?" + params.Encode()
+
+	req := xhttp.NewHTTPRequest().
+		Decorate(
+			xhttp.HTTPRequestTimeoutOp(config.ConfTaskTimeout),
+			xhttp.SimpleRequestOp(http.MethodGet, requestURL, nil),
+			xhttp.HTTPRequestHeaderOp(config.ConfTaskHeaders)).
+		Do().
+		Decorate(
+			xhttp.RspBodyRawReaderOp,
+			xhttp.RspCode200Op,
+			xhttp.RspBodyJSONReader(&rsp),
+		)
+
+	if err := req.Err(); err != nil {
+		return nil, err
+	}
+
+	xlog.Default.Debug(
+		xlog.InfoLogFormat(ctx, "obtainRemoteConfig", "url: ", requestURL, " fileContent: ", string(req.RawContent)))
+
+	return rsp.Data, nil
+}
+
+func loadLocalVersion(fileName string) (string, error) {
+	bs, err := ioutil.ReadFile(fileName)
+	if os.IsNotExist(err) {
+		return "", nil
+	}
+
+	version, err := calculateVersion(bs)
+	if err != nil {
+		return "", fmt.Errorf("bad file content, file: %s, err: %v", fileName, err)
+	}
+
+	return version, nil
+}
+
+var regNumber = regexp.MustCompile("[^0-9]")
+
+func justKeepNumber(s string) string {
+	return regNumber.ReplaceAllString(s, "")
+}
+
+func calculateVersion(fileContent []byte) (string, error) {
+	if len(fileContent) == 0 || bytes.Equal(fileContent, []byte("null")) {
+		return "", nil
+	}
+
+	// all conf file content look like {"Version": "xxx", ....}
+	tmp := struct {
+		Version string
+	}{}
+	if err := json.Unmarshal(fileContent, &tmp); err != nil {
+		return "", err
+	}
+
+	version := justKeepNumber(tmp.Version)
+	if version == "" {
+		version = "00000000000000"
+	}
+
+	return version, nil
+}
