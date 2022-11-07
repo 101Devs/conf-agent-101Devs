@@ -23,4 +23,10 @@ import (
 	"github.com/baidu/conf-agent/conf_reload/prober"
 	"github.com/baidu/conf-agent/conf_reload/trigger"
 	"github.com/baidu/conf-agent/config"
-	"github.
+	"github.com/baidu/conf-agent/xlog"
+)
+
+type Reloader struct {
+	// Name is the name of reloader
+	Name string
+	// ReloadInterval is the interval
