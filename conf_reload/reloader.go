@@ -20,4 +20,7 @@ import (
 	"time"
 
 	"github.com/baidu/conf-agent/conf_reload/file_store"
-	"github.com/baidu/conf
+	"github.com/baidu/conf-agent/conf_reload/prober"
+	"github.com/baidu/conf-agent/conf_reload/trigger"
+	"github.com/baidu/conf-agent/config"
+	"github.
