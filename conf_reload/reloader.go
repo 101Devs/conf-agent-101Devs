@@ -29,4 +29,9 @@ import (
 type Reloader struct {
 	// Name is the name of reloader
 	Name string
-	// ReloadInterval is the interval
+	// ReloadInterval is the interval reloader try to reload
+	ReloadInterval time.Duration
+
+	prober    *prober.Prober
+	trigger   *trigger.Trigger
+	fileStore *file_store.FileStore
