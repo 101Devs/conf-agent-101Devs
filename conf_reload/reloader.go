@@ -45,4 +45,13 @@ func NewReloader(rc *config.ReloaderConfig) (*Reloader, error) {
 
 	trigger, err := trigger.NewTrigger(rc.Trigger)
 	if err != nil {
-		retur
+		return nil, err
+	}
+
+	fileStore, err := file_store.NewFileStore(rc.ConfDir, rc.CopyFiles)
+	if err != nil {
+		return nil, err
+	}
+
+	return &Reloader{
+		Name:
