@@ -38,4 +38,11 @@ type Reloader struct {
 }
 
 func NewReloader(rc *config.ReloaderConfig) (*Reloader, error) {
-	prober, err := prober.NewProber(rc.NormalFileTasks, rc.MultiJSONKeyFileT
+	prober, err := prober.NewProber(rc.NormalFileTasks, rc.MultiJSONKeyFileTasks, rc.ExtraFileFileTasks)
+	if err != nil {
+		return nil, err
+	}
+
+	trigger, err := trigger.NewTrigger(rc.Trigger)
+	if err != nil {
+		retur
