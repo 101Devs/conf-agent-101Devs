@@ -35,3 +35,7 @@ type Reloader struct {
 	prober    *prober.Prober
 	trigger   *trigger.Trigger
 	fileStore *file_store.FileStore
+}
+
+func NewReloader(rc *config.ReloaderConfig) (*Reloader, error) {
+	prober, err := prober.NewProber(rc.NormalFileTasks, rc.MultiJSONKeyFileT
