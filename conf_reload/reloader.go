@@ -63,4 +63,6 @@ func NewReloader(rc *config.ReloaderConfig) (*Reloader, error) {
 	}, nil
 }
 
-func (
+func (r *Reloader) Start() {
+	// don't request config sever at the same time
+	time.Sleep(time.Duration(rand.Int()%int(r.
