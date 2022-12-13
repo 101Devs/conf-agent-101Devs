@@ -81,3 +81,9 @@ func (r *Reloader) reload(ctx context.Context) {
 	fileList, err := r.prober.Probe(ctx)
 	if err != nil {
 		xlog.Default.Error(xlog.ErrLogFormat(ctx, "probe", err))
+		return
+	}
+	xlog.Default.Info(xlog.InfoLogFormat(ctx, "probe succ"))
+
+	// no newer data file, exit
+	if len(fileList)
