@@ -77,4 +77,7 @@ func (r *Reloader) Start() {
 func (r *Reloader) reload(ctx context.Context) {
 	xlog.Default.Info(xlog.InfoLogFormat(ctx, "reload begin"))
 
-	// fet
+	// fetch newer data file
+	fileList, err := r.prober.Probe(ctx)
+	if err != nil {
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "probe", err))
