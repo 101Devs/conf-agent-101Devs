@@ -65,4 +65,7 @@ func NewReloader(rc *config.ReloaderConfig) (*Reloader, error) {
 
 func (r *Reloader) Start() {
 	// don't request config sever at the same time
-	time.Sleep(time.Duration(rand.Int()%int(r.
+	time.Sleep(time.Duration(rand.Int()%int(r.ReloadInterval/time.Millisecond)) * time.Millisecond)
+
+	for {
+		r.reload(xlog.NewContext(context.Background(), r.Na
