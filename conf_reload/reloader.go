@@ -54,4 +54,13 @@ func NewReloader(rc *config.ReloaderConfig) (*Reloader, error) {
 	}
 
 	return &Reloader{
-		Name:
+		Name:           rc.Name,
+		ReloadInterval: rc.ReloadInterval,
+
+		prober:    prober,
+		trigger:   trigger,
+		fileStore: fileStore,
+	}, nil
+}
+
+func (
