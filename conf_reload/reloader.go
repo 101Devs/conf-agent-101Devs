@@ -68,4 +68,13 @@ func (r *Reloader) Start() {
 	time.Sleep(time.Duration(rand.Int()%int(r.ReloadInterval/time.Millisecond)) * time.Millisecond)
 
 	for {
-		r.reload(xlog.NewContext(context.Background(), r.Na
+		r.reload(xlog.NewContext(context.Background(), r.Name))
+
+		time.Sleep(r.ReloadInterval)
+	}
+}
+
+func (r *Reloader) reload(ctx context.Context) {
+	xlog.Default.Info(xlog.InfoLogFormat(ctx, "reload begin"))
+
+	// fet
