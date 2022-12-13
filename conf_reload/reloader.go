@@ -86,4 +86,10 @@ func (r *Reloader) reload(ctx context.Context) {
 	xlog.Default.Info(xlog.InfoLogFormat(ctx, "probe succ"))
 
 	// no newer data file, exit
-	if len(fileList)
+	if len(fileList) == 0 {
+		xlog.Default.Info(xlog.InfoLogFormat(ctx, "reload succ", "without_update"))
+		return
+	}
+
+	version := ""
+	files := map[string][]byte{}
