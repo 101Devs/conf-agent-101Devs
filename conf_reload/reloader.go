@@ -103,4 +103,9 @@ func (r *Reloader) reload(ctx context.Context) {
 	// store all newer data file
 	err = r.fileStore.StoreFile2TmpDir(ctx, version, files)
 	if err != nil {
-		xlog.Default.Error(xlog.Er
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "StoreFile2TmpDir fail", err))
+		return
+	}
+	xlog.Default.Info(xlog.InfoLogFormat(ctx, "StoreFile2TmpDir succ"))
+
+	//
