@@ -93,3 +93,9 @@ func (r *Reloader) reload(ctx context.Context) {
 
 	version := ""
 	files := map[string][]byte{}
+	for _, one := range fileList {
+		files[one.Name] = one.Content
+		if one.Version > version {
+			version = one.Version
+		}
+	
