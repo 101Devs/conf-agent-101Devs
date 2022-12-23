@@ -98,4 +98,9 @@ func (r *Reloader) reload(ctx context.Context) {
 		if one.Version > version {
 			version = one.Version
 		}
-	
+	}
+
+	// store all newer data file
+	err = r.fileStore.StoreFile2TmpDir(ctx, version, files)
+	if err != nil {
+		xlog.Default.Error(xlog.Er
