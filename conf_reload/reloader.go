@@ -108,4 +108,7 @@ func (r *Reloader) reload(ctx context.Context) {
 	}
 	xlog.Default.Info(xlog.InfoLogFormat(ctx, "StoreFile2TmpDir succ"))
 
-	//
+	// trigger bfe reload
+	err = r.trigger.TriggerBFEReload(ctx, version)
+	if err != nil {
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "TriggerB
