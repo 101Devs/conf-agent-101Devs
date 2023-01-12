@@ -116,4 +116,7 @@ func (r *Reloader) reload(ctx context.Context) {
 	}
 	xlog.Default.Info(xlog.InfoLogFormat(ctx, "TriggerBFEReload succ"))
 
-	// replace old config by newest,
+	// replace old config by newest, if fail, it's ok
+	err = r.fileStore.UpdateDefaultConfDir(ctx, version)
+	if err != nil {
+		xlog.Default.Error(xlog.ErrLogFormat(
