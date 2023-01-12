@@ -111,4 +111,9 @@ func (r *Reloader) reload(ctx context.Context) {
 	// trigger bfe reload
 	err = r.trigger.TriggerBFEReload(ctx, version)
 	if err != nil {
-		xlog.Default.Error(xlog.ErrLogFormat(ctx, "TriggerB
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "TriggerBFEReload fail", err))
+		return
+	}
+	xlog.Default.Info(xlog.InfoLogFormat(ctx, "TriggerBFEReload succ"))
+
+	// replace old config by newest,
