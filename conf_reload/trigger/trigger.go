@@ -18,3 +18,12 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"net/url"
+
+	"github.com/baidu/conf-agent/config"
+	"github.com/baidu/conf-agent/xhttp"
+	"github.com/baidu/conf-agent/xlog"
+)
+
+type Trigger struct {
+	c
