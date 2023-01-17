@@ -119,4 +119,8 @@ func (r *Reloader) reload(ctx context.Context) {
 	// replace old config by newest, if fail, it's ok
 	err = r.fileStore.UpdateDefaultConfDir(ctx, version)
 	if err != nil {
-		xlog.Default.Error(xlog.ErrLogFormat(
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "UpdateDefaultConfDir fail", err))
+	}
+	xlog.Default.Info(xlog.InfoLogFormat(ctx, "UpdateDefaultConfDir succ"))
+
+	xlog.Default.Info(xlog.InfoLogFormat(ct
