@@ -26,4 +26,13 @@ import (
 )
 
 type Trigger struct {
-	c
+	c config.TriggerConfig
+}
+
+func NewTrigger(c config.TriggerConfig) (*Trigger, error) {
+	return &Trigger{
+		c: c,
+	}, nil
+}
+
+func (t
