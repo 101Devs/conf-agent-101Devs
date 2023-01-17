@@ -123,4 +123,5 @@ func (r *Reloader) reload(ctx context.Context) {
 	}
 	xlog.Default.Info(xlog.InfoLogFormat(ctx, "UpdateDefaultConfDir succ"))
 
-	xlog.Default.Info(xlog.InfoLogFormat(ct
+	xlog.Default.Info(xlog.InfoLogFormat(ctx, "reload succ", "update"))
+}
