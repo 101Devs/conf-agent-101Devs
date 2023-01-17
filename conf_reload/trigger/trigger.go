@@ -35,4 +35,5 @@ func NewTrigger(c config.TriggerConfig) (*Trigger, error) {
 	}, nil
 }
 
-func (t
+func (trigger *Trigger) TriggerBFEReload(ctx context.Context, version string) error {
+	confDir := trigger.c.ConfDir + "_
