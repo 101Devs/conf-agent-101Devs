@@ -36,4 +36,10 @@ func NewTrigger(c config.TriggerConfig) (*Trigger, error) {
 }
 
 func (trigger *Trigger) TriggerBFEReload(ctx context.Context, version string) error {
-	confDir := trigger.c.ConfDir + "_
+	confDir := trigger.c.ConfDir + "_" + version
+
+	query := url.Values{}
+	query.Add("path", confDir)
+	api := fmt.Sprintf("%s?%s", trigger.c.BFEReloadAPI, query.Encode())
+
+	// succ
