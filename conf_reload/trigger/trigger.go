@@ -42,4 +42,11 @@ func (trigger *Trigger) TriggerBFEReload(ctx context.Context, version string) er
 	query.Add("path", confDir)
 	api := fmt.Sprintf("%s?%s", trigger.c.BFEReloadAPI, query.Encode())
 
-	// succ
+	// succ relaod rsp: {"error":null}
+	rsp := &struct {
+		Error string `json:"error"`
+	}{}
+
+	req := xhttp.NewHTTPRequest().
+		Decorate(
+			xhttp.HTT
