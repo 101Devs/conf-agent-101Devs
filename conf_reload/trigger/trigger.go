@@ -49,4 +49,9 @@ func (trigger *Trigger) TriggerBFEReload(ctx context.Context, version string) er
 
 	req := xhttp.NewHTTPRequest().
 		Decorate(
-			xhttp.HTT
+			xhttp.HTTPRequestTimeoutOp(trigger.c.BFEReloadTimeout),
+			xhttp.SimpleRequestOp(http.MethodGet, api, nil),
+		).
+		Do().
+		Decorate(
+			xhttp
