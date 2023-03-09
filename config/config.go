@@ -62,3 +62,115 @@ func newNormalFileTaskConfig(cf NormalFileTaskConfigFile, rcf ReloaderConfigFile
 
 		ConfAPI:      cf.ConfServer + cf.ConfAPI,
 		ConfFileName: cf.ConfFileName,
+
+		ConfTaskHeaders: cf.ConfTaskHeaders,
+		ConfTaskTimeout: time.Duration(cf.ConfTaskTimeoutMs) * time.Millisecond,
+	}
+}
+
+type MultiJSONKeyFileTaskConfig struct {
+	BFECluster string
+
+	ConfDir      string
+	ConfAPI      string
+	Key2ConfFile map[string]string
+
+	ConfTaskHeaders map[string]string
+	ConfTaskTimeout time.Duration
+}
+
+func newMultiJSONKeyFileTaskConfig(cf MultiJSONKeyFileTaskConfigFile, rcf ReloaderConfigFile) *MultiJSONKeyFileTaskConfig {
+	return &MultiJSONKeyFileTaskConfig{
+		BFECluster: rcf.BFECluster,
+
+		ConfDir:      rcf.ConfDir,
+		ConfAPI:      cf.ConfServer + cf.ConfAPI,
+		Key2ConfFile: cf.Key2ConfFile,
+
+		ConfTaskHeaders: cf.ConfTaskHeaders,
+		ConfTaskTimeout: time.Duration(cf.ConfTaskTimeoutMs) * time.Millisecond,
+	}
+}
+
+type ExtraFileTaskConfig struct {
+	NormalFileTaskConfig
+
+	ExtraFileServer      string
+	ExtraFileTaskHeaders map[string]string
+	ExtraFileTaskTimeout time.Duration
+
+	// see https://goessner.net/articles/JsonPath/
+	JSONPaths []jp.Expr `json:"-"`
+}
+
+type TriggerConfig struct {
+	BFEReloadAPI     string
+	BFEReloadTimeout time.Duration
+	ConfDir          string
+}
+
+func newExtraFileTaskConfig(cf ExtraFileTaskConfigFile, rcf ReloaderConfigFile) (*ExtraFileTaskConfig, error) {
+	patterns := []jp.Expr{}
+	for _, path := range cf.ExtraFileJSONPaths {
+		pattern, err := jp.ParseString(path)
+		if err != nil {
+			return nil, fmt.Errorf("ExtraFileJSONPaths %s compile fail, err: %v", path, err)
+		}
+
+		patterns = append(patterns, pattern)
+	}
+
+	return &ExtraFileTaskConfig{
+		NormalFileTaskConfig: *newNormalFileTaskConfig(cf.NormalFileTaskConfigFile, rcf),
+
+		ExtraFileServer:      cf.ExtraFileServer,
+		ExtraFileTaskHeaders: cf.ExtraFileTaskHeaders,
+		ExtraFileTaskTimeout: time.Duration(cf.ExtraFileTaskTimeoutMs) * time.Millisecond,
+
+		JSONPaths: patterns,
+	}, nil
+}
+
+func newReloaderConfig(rcf *ReloaderConfigFile, basic BasicFile) (*ReloaderConfig, error) {
+	rc := &ReloaderConfig{
+		Name:           rcf.name,
+		ReloadInterval: time.Duration(rcf.ReloadIntervalMs) * time.Millisecond,
+		ConfDir:        rcf.ConfDir,
+
+		Trigger: TriggerConfig{
+			BFEReloadAPI:     fmt.Sprintf("http://127.0.0.1:%d%s", basic.BFEMonitorPort, rcf.BFEReloadAPI),
+			BFEReloadTimeout: time.Duration(rcf.BFEReloadTimeoutMs) * time.Millisecond,
+			ConfDir:          rcf.ConfDir,
+		},
+		CopyFiles: rcf.CopyFiles,
+	}
+
+	for _, task := range rcf.NormalFileTasks {
+		rc.NormalFileTasks = append(rc.NormalFileTasks, newNormalFileTaskConfig(task, *rcf))
+	}
+
+	for _, task := range rcf.MultiKeyFileTasks {
+		rc.MultiJSONKeyFileTasks = append(rc.MultiJSONKeyFileTasks, newMultiJSONKeyFileTaskConfig(task, *rcf))
+	}
+
+	for _, task := range rcf.ExtraFileTasks {
+		t, err := newExtraFileTaskConfig(task, *rcf)
+		if err != nil {
+			return nil, err
+		}
+		rc.ExtraFileFileTasks = append(rc.ExtraFileFileTasks, t)
+	}
+
+	return rc, nil
+}
+
+func Init(configFile string) (*Config, error) {
+	config := &ConfigFile{
+		Basic: BasicFile{
+			BFEMonitorPort:     8421,
+			BFEReloadTimeoutMs: 1500,
+			BFEConfDir:         "/home/work/bfe/conf",
+
+			ConfTaskTimeoutMs: 2500,
+
+			ExtraFileTaskTimeoutMs: 2500,
