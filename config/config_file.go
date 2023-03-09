@@ -83,3 +83,132 @@ type ReloaderConfigFile struct {
 
 type NormalFileTaskConfigFile struct {
 	// ConfAPI use to access to obtain conf file info
+	ConfAPI string `validate:"required"`
+	// ConfFileName is the local file name of this conf
+	ConfFileName string `validate:"required"`
+
+	// optional
+	ConfServer        string `validate:"min=1"`
+	ConfTaskHeaders   map[string]string
+	ConfTaskTimeoutMs int `validate:"min=1"`
+}
+
+func (tf *NormalFileTaskConfigFile) merge(basic *BasicFile) {
+	if tf.ConfServer == "" {
+		tf.ConfServer = basic.ConfServer
+	}
+
+	if tf.ConfTaskHeaders == nil {
+		tf.ConfTaskHeaders = basic.ConfTaskHeaders
+	}
+
+	if tf.ConfTaskTimeoutMs == 0 {
+		tf.ConfTaskTimeoutMs = basic.ConfTaskTimeoutMs
+	}
+}
+
+type ExtraFileTaskConfigFile struct {
+	NormalFileTaskConfigFile
+
+	// ExtraFileJSONPaths is the list of json path
+	// the rule of obtain extra files name be defined by json path
+	// see https://goessner.net/articles/JsonPath/
+	ExtraFileJSONPaths []string
+
+	// optional
+	ExtraFileServer        string `validate:"min=1"`
+	ExtraFileTaskHeaders   map[string]string
+	ExtraFileTaskTimeoutMs int `validate:"min=1"`
+}
+
+func (tf *ExtraFileTaskConfigFile) merge(basic *BasicFile) {
+	tf.NormalFileTaskConfigFile.merge(basic)
+
+	if tf.ExtraFileServer == "" {
+		tf.ExtraFileServer = basic.ExtraFileServer
+	}
+
+	if tf.ExtraFileTaskHeaders == nil {
+		tf.ExtraFileTaskHeaders = basic.ExtraFileTaskHeaders
+	}
+
+	if tf.ExtraFileTaskTimeoutMs == 0 {
+		tf.ExtraFileTaskTimeoutMs = basic.ExtraFileTaskTimeoutMs
+	}
+}
+
+type MultiJSONKeyFileTaskConfigFile struct {
+	// ConfAPI use to access to obtain conf file info
+	ConfAPI string `validate:"required"`
+	// Key2ConfFile is a map define the relation of the key of conf object and local file name
+	Key2ConfFile map[string]string
+
+	// optional
+	ConfServer        string `validate:"min=1"`
+	ConfTaskHeaders   map[string]string
+	ConfTaskTimeoutMs int `validate:"min=1"`
+}
+
+func (tf *MultiJSONKeyFileTaskConfigFile) merge(basic *BasicFile) {
+	if tf.ConfServer == "" {
+		tf.ConfServer = basic.ConfServer
+	}
+
+	if tf.ConfTaskHeaders == nil {
+		tf.ConfTaskHeaders = basic.ConfTaskHeaders
+	}
+
+	if tf.ConfTaskTimeoutMs == 0 {
+		tf.ConfTaskTimeoutMs = basic.ConfTaskTimeoutMs
+	}
+}
+
+type LoggerConfig struct {
+	LogDir      string `validate:"required,min=1"`
+	LogName     string `validate:"required,min=1"`
+	LogLevel    string `validate:"required,oneof=DEBUG TRACE INFO WARNING ERROR CRITICAL"`
+	RotateWhen  string `validate:"required,oneof=M H D MIDNIGHT"` // rotate time
+	BackupCount int    `validate:"required,min=1"`                // backup files
+	Format      string `validate:"required,min=1"`
+	StdOut      bool
+}
+
+type ConfigFile struct {
+	Basic  BasicFile
+	Logger LoggerConfig `validate:"required"`
+
+	Reloaders map[string]*ReloaderConfigFile `validate:"required,dive,min=1"`
+}
+
+func (reloader *ReloaderConfigFile) merge(basic *BasicFile) error {
+	name := reloader.name
+
+	if reloader.BFECluster == "" {
+		reloader.BFECluster = basic.BFECluster
+	}
+
+	taskCount := len(reloader.MultiKeyFileTasks) + len(reloader.NormalFileTasks) + len(reloader.ExtraFileTasks)
+	if taskCount == 0 {
+		return fmt.Errorf("reloader %s should has at least one task", name)
+	}
+
+	for i, task := range reloader.NormalFileTasks {
+		task.merge(basic)
+		reloader.NormalFileTasks[i] = task
+	}
+	for i, task := range reloader.MultiKeyFileTasks {
+		task.merge(basic)
+		reloader.MultiKeyFileTasks[i] = task
+	}
+	for i, task := range reloader.ExtraFileTasks {
+		task.merge(basic)
+		reloader.ExtraFileTasks[i] = task
+	}
+
+	if reloader.ConfDir == "" {
+		reloader.ConfDir = path.Join(basic.BFEConfDir, name)
+	}
+	if reloader.BFEReloadAPI == "" {
+		reloader.BFEReloadAPI = "/reload/" + name
+	}
+	if reloader.BFEReloadTimeoutMs == 0 {
