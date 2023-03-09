@@ -61,4 +61,9 @@ func (trigger *Trigger) TriggerBFEReload(ctx context.Context, version string) er
 
 	err := req.Err()
 	if err != nil {
-		xlog.Default.Error(xlog.Er
+		xlog.Default.Error(xlog.ErrLogFormat(ctx, "reload_bfe", err))
+		return err
+	}
+
+	if rsp.Error != "" {
+		err = fmt.Errorf("reload fail, rsp: %s", string(req.
