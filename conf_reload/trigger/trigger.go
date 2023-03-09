@@ -54,4 +54,11 @@ func (trigger *Trigger) TriggerBFEReload(ctx context.Context, version string) er
 		).
 		Do().
 		Decorate(
-			xhttp
+			xhttp.RspBodyRawReaderOp,
+			xhttp.RspCode200Op,
+			xhttp.RspBodyJSONReader(rsp),
+		)
+
+	err := req.Err()
+	if err != nil {
+		xlog.Default.Error(xlog.Er
