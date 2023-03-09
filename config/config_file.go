@@ -212,3 +212,11 @@ func (reloader *ReloaderConfigFile) merge(basic *BasicFile) error {
 		reloader.BFEReloadAPI = "/reload/" + name
 	}
 	if reloader.BFEReloadTimeoutMs == 0 {
+		reloader.BFEReloadTimeoutMs = basic.BFEReloadTimeoutMs
+	}
+	if reloader.ReloadIntervalMs == 0 {
+		reloader.ReloadIntervalMs = basic.ReloadIntervalMs
+	}
+
+	return nil
+}
