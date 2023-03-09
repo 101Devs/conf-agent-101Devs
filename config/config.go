@@ -174,3 +174,41 @@ func Init(configFile string) (*Config, error) {
 			ConfTaskTimeoutMs: 2500,
 
 			ExtraFileTaskTimeoutMs: 2500,
+
+			ReloadIntervalMs: 10000,
+		},
+	}
+
+	if err := LoadConf(configFile, config); err != nil {
+		return nil, err
+	}
+
+	for name, reloader := range config.Reloaders {
+		reloader.name = name
+		if err := reloader.merge(&config.Basic); err != nil {
+			return nil, err
+		}
+	}
+
+	if err := validator.New().Struct(config); err != nil {
+		return nil, err
+	}
+
+	reloaders := []*ReloaderConfig{}
+	for _, reloader := range config.Reloaders {
+		rc, err := newReloaderConfig(reloader, config.Basic)
+		if err != nil {
+			return nil, err
+		}
+
+		reloaders = append(reloaders, rc)
+	}
+	sort.Slice(reloaders, func(i, j int) bool {
+		return reloaders[i].Name < reloaders[j].Name
+	})
+
+	return &Config{
+		Reloaders: reloaders,
+		Logger:    &config.Logger,
+	}, nil
+}
