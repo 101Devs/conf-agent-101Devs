@@ -23,3 +23,11 @@ import (
 
 // LoadConf load config from file
 func LoadConf(fileName string, data interface{}) error {
+	fileName, err := filepath.Abs(fileName)
+	if err != nil {
+		return err
+	}
+
+	bs, err := ioutil.ReadFile(fileName)
+	if err != nil {
+		retu
