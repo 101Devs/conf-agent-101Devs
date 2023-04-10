@@ -18,4 +18,8 @@ import (
 	"io/ioutil"
 	"path/filepath"
 
-	"github.c
+	"github.com/BurntSushi/toml"
+)
+
+// LoadConf load config from file
+func LoadConf(fileName string, data interface{}) error {
