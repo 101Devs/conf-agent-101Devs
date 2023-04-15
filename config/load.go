@@ -30,4 +30,8 @@ func LoadConf(fileName string, data interface{}) error {
 
 	bs, err := ioutil.ReadFile(fileName)
 	if err != nil {
-		retu
+		return err
+	}
+
+	return toml.Unmarshal(bs, data)
+}
