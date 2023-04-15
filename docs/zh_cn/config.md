@@ -17,3 +17,9 @@
 | BackupCount | int | 日志文件保留格式 | Y | - | |
 | Format | string | 日志消息格式 | Y | - | |
 | StdOut | bool | 日志内容是否控制台输出 | N | - | |
+
+
+## 2 Basic配置
+| Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
+| - | - | - | - | - | - |
+| BFECluster              | string | 当前所在的BFE集群名 | Y |  |
