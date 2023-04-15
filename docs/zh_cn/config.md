@@ -13,4 +13,7 @@
 | LogDir | string | 日志文件目录 | Y | - | |
 | LogName | string | 日志文件名 | Y | - | |
 | LogLevel | string | 日志等价 | Y | - |  可选： DEBUG TRACE INFO WARNING ERROR CRITICAL|
-| RotateWhen | string | 日志文件切割策略 | Y | - | 可选：M：每分钟 H：每小时
+| RotateWhen | string | 日志文件切割策略 | Y | - | 可选：M：每分钟 H：每小时 D：每天 MIDNIGHT：午夜切割 |
+| BackupCount | int | 日志文件保留格式 | Y | - | |
+| Format | string | 日志消息格式 | Y | - | |
+| StdOut | bool | 日志内容是否控制台输出 | N | - | |
