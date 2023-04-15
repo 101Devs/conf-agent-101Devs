@@ -8,4 +8,7 @@
 
 
 ## 1 Logger配置
-| Key
+| Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
+| - | - | - | - | - | - |
+| LogDir | string | 日志文件目录 | Y | - | |
+| LogName | string | 日志文件名 | Y | - 
