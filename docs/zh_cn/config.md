@@ -24,4 +24,6 @@
 | - | - | - | - | - | - |
 | BFECluster              | string | 当前所在的BFE集群名 | Y |  |  |
 | BFEConfDir              | string | bfe配置目录位置 | N | /home/work/bfe/conf |  |
-| BFEMonitorPort          | int | B
+| BFEMonitorPort          | int | BFE监控端口号，配置加载时将调用 | N | 8421 |  |
+| BFEReloadTimeoutMs      | int | BFE reload 超时设置 | N | 1500 |  |
+| ReloadIntervalM
