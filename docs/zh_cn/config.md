@@ -3,4 +3,9 @@
 - 配置 使用 `toml` 数据格式
 - 配置分为3部分：
     - Logger：日志相关，必填，将按照配置初始化文件日志对象
-    - Basi
+    - Basic：基础配置，为Reloader配置的缺省配置，当Reloader没有配置时，会使用Basic配置作为Reloader配置。建议配置Basic配置，Reloader配置只在需要的时候进行个性化配置
+    - Reloaders: reload列表。
+
+
+## 1 Logger配置
+| Key
