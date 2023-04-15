@@ -11,4 +11,6 @@
 | Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
 | - | - | - | - | - | - |
 | LogDir | string | 日志文件目录 | Y | - | |
-| LogName | string | 日志文件名 | Y | - 
+| LogName | string | 日志文件名 | Y | - | |
+| LogLevel | string | 日志等价 | Y | - |  可选： DEBUG TRACE INFO WARNING ERROR CRITICAL|
+| RotateWhen | string | 日志文件切割策略 | Y | - | 可选：M：每分钟 H：每小时
