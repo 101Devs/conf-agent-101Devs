@@ -22,4 +22,6 @@
 ## 2 Basic配置
 | Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
 | - | - | - | - | - | - |
-| BFECluster              | string | 当前所在的BFE集群名 | Y |  |
+| BFECluster              | string | 当前所在的BFE集群名 | Y |  |  |
+| BFEConfDir              | string | bfe配置目录位置 | N | /home/work/bfe/conf |  |
+| BFEMonitorPort          | int | B
