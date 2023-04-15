@@ -26,4 +26,6 @@
 | BFEConfDir              | string | bfe配置目录位置 | N | /home/work/bfe/conf |  |
 | BFEMonitorPort          | int | BFE监控端口号，配置加载时将调用 | N | 8421 |  |
 | BFEReloadTimeoutMs      | int | BFE reload 超时设置 | N | 1500 |  |
-| ReloadIntervalM
+| ReloadIntervalMs             | int | 拉取时间间隔 | N | 10000 |  |
+| ConfServer              | string | APIServer服务器，用来拉取配置 | Y | - |  |
+| ConfTas
