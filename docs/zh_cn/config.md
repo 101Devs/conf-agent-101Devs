@@ -28,4 +28,4 @@
 | BFEReloadTimeoutMs      | int | BFE reload 超时设置 | N | 1500 |  |
 | ReloadIntervalMs             | int | 拉取时间间隔 | N | 10000 |  |
 | ConfServer              | string | APIServer服务器，用来拉取配置 | Y | - |  |
-| ConfTaskHeaders        | map\<string\>string  | 配置请求Header, Api Server 当前会对请求鉴权，需要设置 Authorization 头， [通过Dashboard获取Token](https://github.
+| ConfTaskHeaders        | map\<string\>string  | 配置请求Header, Api Server 当前会对请求鉴权，需要设置 Authorization 头， [通过Dashboard获取Token](https://github.com/bfenetworks/dashboard/blob/develop/docs/zh-cn/user-guide/system-view/user-management.md#token%E7%AE%A1%E7%90%8
