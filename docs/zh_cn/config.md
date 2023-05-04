@@ -36,4 +36,9 @@
 
 ## 3 Reloaders配置
 
-Reloaders 是个 map\<string\>Reloa
+Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详细配置。
+
+每个Reloader配置为：
+| Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
+| - | - | - | - | - | - |
+| ConfDir          | 
