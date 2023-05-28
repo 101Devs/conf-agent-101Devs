@@ -42,4 +42,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
 | - | - | - | - | - | - |
 | ConfDir          | string | 模块配置本地目录 | N | 同模块名 | 模块的配置将保留在 {BFEConfDir}/{ConfDir}/下 |
-| BFEReloadAPI  | string | bfe reload API | Y | - | 见 [数据面reload](https://www.bfe
+| BFEReloadAPI  | string | bfe reload API | Y | - | 见 [数据面reload](https://www.bfe-networks.net/zh_cn/operation/reload/) |
+| BFEReloadTimeoutMs  |  |  | N  |  | 同 Basic.BFEReloadTimeoutMs，若未设置使用 Basic 设置 |
+| ReloadIntervalMs  |  |  
