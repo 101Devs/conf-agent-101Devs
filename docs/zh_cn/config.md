@@ -45,4 +45,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | BFEReloadAPI  | string | bfe reload API | Y | - | 见 [数据面reload](https://www.bfe-networks.net/zh_cn/operation/reload/) |
 | BFEReloadTimeoutMs  |  |  | N  |  | 同 Basic.BFEReloadTimeoutMs，若未设置使用 Basic 设置 |
 | ReloadIntervalMs  |  |  | N  |  | 同 Basic.ReloadIntervalMs，若未设置使用 Basic 设置 |
-| CopyFiles          | []string | 保留的文件列表 | N | - | 有些配置当前不会通过api server 的配置导出的接口更
+| CopyFiles          | []string | 保留的文件列表 | N | - | 有些配置当前不会通过api server 的配置导出的接口更新，但是bfe冷启动时必须读取。对于这些文件，需要从默认文件夹copy到最新的配置文件夹当做初始化配置。 |
+| NormalFileTasks  | []NormalFileTask |  | N  |  | 普通配置文件任务列表。详细说明见后续说明 |
+| MultiKeyFil
