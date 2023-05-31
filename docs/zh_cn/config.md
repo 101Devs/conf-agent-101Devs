@@ -47,4 +47,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | ReloadIntervalMs  |  |  | N  |  | 同 Basic.ReloadIntervalMs，若未设置使用 Basic 设置 |
 | CopyFiles          | []string | 保留的文件列表 | N | - | 有些配置当前不会通过api server 的配置导出的接口更新，但是bfe冷启动时必须读取。对于这些文件，需要从默认文件夹copy到最新的配置文件夹当做初始化配置。 |
 | NormalFileTasks  | []NormalFileTask |  | N  |  | 普通配置文件任务列表。详细说明见后续说明 |
-| MultiKeyFil
+| MultiKeyFileTasks  | []MultiKeyFileTask |  | N  |  | 多个Key配置文件任务列表。详细说明见后续说明 |
+| ExtraFileTasks  | []ExtraFileTask |  | N  |  | 有扩展文件的配置文件任务列表。详细说明见后续说明 |
+
