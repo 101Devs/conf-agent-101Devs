@@ -50,3 +50,7 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | MultiKeyFileTasks  | []MultiKeyFileTask |  | N  |  | 多个Key配置文件任务列表。详细说明见后续说明 |
 | ExtraFileTasks  | []ExtraFileTask |  | N  |  | 有扩展文件的配置文件任务列表。详细说明见后续说明 |
 
+文件任务的定义如下：
+- NormalFileTask: 一个API对应一个本地配置文件的形式。
+- MultiKeyFileTask: 一个API对应多个本地配置文件的形式。其中API返回多个配置文件的内容，每个key都对应一个本地配置文件。
+- ExtraFileTask: 和 N
