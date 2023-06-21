@@ -58,4 +58,7 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 一个reloader可以定义多种类型的任务，每种类型的任务格式也可以是多个的。
 一个reloader必须至少定义一个任务。
 
-### 
+### 3.1 Reloader.NormalFileTasks
+| Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
+| - | - | - | - | - | - |
+| ConfAPI          | string | APISer
