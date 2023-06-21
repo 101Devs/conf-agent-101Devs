@@ -61,4 +61,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 ### 3.1 Reloader.NormalFileTasks
 | Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
 | - | - | - | - | - | - |
-| ConfAPI          | string | APISer
+| ConfAPI          | string | APIServer 配置导出的 API | Y | - |  |
+| ConfFileName    | string | 文件本地保存的文件名 | Y | - | 最终文件名为： {BFEConfDir}/{ConfDir}_{version}/{ConfFileName} |
+| ConfServer  
