@@ -71,4 +71,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
 | - | - | - | - | - | - |
 | ConfAPI          | string | APIServer 配置导出的 API | Y | - |  |
-| Key2Co
+| Key2ConfFile | map\<string\>string | 配置对象和文件本地保存的文件名的映射 | Y | - | |
+| ConfServer  |  |  | N  |  | 同 Basic.ConfServer，若未设置使用 Basic 设置 |
+| Co
