@@ -68,4 +68,7 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | ConfTaskTimeoutMs  |  |  | N  |  | 同 Basic.ConfTaskTimeoutMs，若未设置使用 Basic 设置 |
 
 ### 3.2 Reloader.MultiKeyFileTasks
-| Key | 数据类型 |
+| Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
+| - | - | - | - | - | - |
+| ConfAPI          | string | APIServer 配置导出的 API | Y | - |  |
+| Key2Co
