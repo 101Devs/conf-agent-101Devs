@@ -80,4 +80,5 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 ### 3.3 Reloader.ExtraFileTasks
 | Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
 | - | - | - | - | - | - |
-| ExtraFileJSONPaths   
+| ExtraFileJSONPaths    | []string | 扩展文件名的JsonPath | N | - | [JsonPath语法](https://goessner.net/articles/JsonPath/), 对于有附件的配置，需要配置 |
+| ConfAPI   
