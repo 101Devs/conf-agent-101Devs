@@ -74,4 +74,10 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | Key2ConfFile | map\<string\>string | 配置对象和文件本地保存的文件名的映射 | Y | - | |
 | ConfServer  |  |  | N  |  | 同 Basic.ConfServer，若未设置使用 Basic 设置 |
 | ConfTaskHeaders  |  |  | N  |  | 同 Basic.ConfTaskHeaders，若未设置使用 Basic 设置 |
-| ConfTaskTimeoutMs  |  |  | N  |  | 同 Basic.ConfTaskTimeout
+| ConfTaskTimeoutMs  |  |  | N  |  | 同 Basic.ConfTaskTimeoutMs，若未设置使用 Basic 设置 |
+
+
+### 3.3 Reloader.ExtraFileTasks
+| Key | 数据类型 | 含义  | 必填 | 默认值 | 说明 | 
+| - | - | - | - | - | - |
+| ExtraFileJSONPaths   
