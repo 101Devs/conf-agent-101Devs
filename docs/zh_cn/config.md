@@ -82,4 +82,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | - | - | - | - | - | - |
 | ExtraFileJSONPaths    | []string | 扩展文件名的JsonPath | N | - | [JsonPath语法](https://goessner.net/articles/JsonPath/), 对于有附件的配置，需要配置 |
 | ConfAPI          | string | APIServer 配置导出的 API | Y | - |  |
-| ConfFileName    | string | 文件本地保存的文件名 | Y | - | 最终文件名为： {BFEConfDir}/{
+| ConfFileName    | string | 文件本地保存的文件名 | Y | - | 最终文件名为： {BFEConfDir}/{ConfDir}_{version}/{ConfFileName} |
+| ConfServer  |  |  | N  |  | 同 Basic.ConfServer，若未设置使用 Basic 设置 |
+| ConfTaskHeaders  |  |  | N  | 
