@@ -87,4 +87,5 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | ConfTaskHeaders  |  |  | N  |  | 同 Basic.ConfTaskHeaders，若未设置使用 Basic 设置 |
 | ConfTaskTimeoutMs  |  |  | N  |  | 同 Basic.ConfTaskTimeoutMs，若未设置使用 Basic 设置 
 | ExtraFileServer  |  |  | N  |  | 同 Basic.ExtraFileServer ，若未设置使用 Basic 设置 |
-| ExtraFileTaskHeaders  |  |  | N  |  | 同 Basic.ExtraFileTaskHeaders ，
+| ExtraFileTaskHeaders  |  |  | N  |  | 同 Basic.ExtraFileTaskHeaders ，若未设置使用 Basic 设置 |
+| ExtraFileTaskTimeoutMs  |  |  | N  |  | 同 Basic.ExtraFileTaskTimeoutMs ，若未设置使用 Basic 设置
