@@ -84,4 +84,6 @@ Reloaders 是个 map\<string\>Reloader 数据类型，key为名字，value为详
 | ConfAPI          | string | APIServer 配置导出的 API | Y | - |  |
 | ConfFileName    | string | 文件本地保存的文件名 | Y | - | 最终文件名为： {BFEConfDir}/{ConfDir}_{version}/{ConfFileName} |
 | ConfServer  |  |  | N  |  | 同 Basic.ConfServer，若未设置使用 Basic 设置 |
-| ConfTaskHeaders  |  |  | N  | 
+| ConfTaskHeaders  |  |  | N  |  | 同 Basic.ConfTaskHeaders，若未设置使用 Basic 设置 |
+| ConfTaskTimeoutMs  |  |  | N  |  | 同 Basic.ConfTaskTimeoutMs，若未设置使用 Basic 设置 
+| ExtraF
