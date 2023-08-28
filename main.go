@@ -55,3 +55,15 @@ func main() {
 	if err != nil {
 		exit(err)
 	}
+
+	if err := xlog.Init(conf.Logger); err != nil {
+		exit(err)
+	}
+
+	agent, err := agent.New(conf.Reloaders)
+	if err != nil {
+		exit(err)
+	}
+
+	agent.Start()
+}
