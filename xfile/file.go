@@ -30,4 +30,8 @@ func IsFileNotExistError(err error) bool {
 		return false
 	}
 
-	return strings.Contains(strin
+	return strings.Contains(strings.ToLower(err.Error()), "no such file or directory")
+}
+
+func FileOverwrite(fileName string, content []byte) error {
+	dir :=
