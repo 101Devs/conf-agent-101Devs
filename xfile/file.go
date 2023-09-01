@@ -21,4 +21,13 @@ import (
 	"os"
 	"os/exec"
 	"path"
-	"path/
+	"path/filepath"
+	"strings"
+)
+
+func IsFileNotExistError(err error) bool {
+	if err == nil {
+		return false
+	}
+
+	return strings.Contains(strin
