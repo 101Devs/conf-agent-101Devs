@@ -43,4 +43,10 @@ func FileOverwrite(fileName string, content []byte) error {
 	}
 
 	if err := ioutil.WriteFile(fileName, content, os.ModePerm); err != nil {
-		ret
+		return fmt.Errorf("overwrite file fail, file: %s, err: %v", fileName, err)
+	}
+
+	return nil
+}
+
+func FileCopyRecursive(from, to
