@@ -38,4 +38,9 @@ func FileOverwrite(fileName string, content []byte) error {
 	_, err := os.Stat(dir)
 	if os.IsNotExist(err) {
 		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
-			return fmt.E
+			return fmt.Errorf("create dir fail, dir: %s, err: %v", dir, err)
+		}
+	}
+
+	if err := ioutil.WriteFile(fileName, content, os.ModePerm); err != nil {
+		ret
