@@ -34,4 +34,8 @@ func IsFileNotExistError(err error) bool {
 }
 
 func FileOverwrite(fileName string, content []byte) error {
-	dir :=
+	dir := path.Dir(fileName)
+	_, err := os.Stat(dir)
+	if os.IsNotExist(err) {
+		if err := os.MkdirAll(dir, os.ModePerm); err != nil {
+			return fmt.E
