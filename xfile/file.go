@@ -49,4 +49,6 @@ func FileOverwrite(fileName string, content []byte) error {
 	return nil
 }
 
-func FileCopyRecursive(from, to
+func FileCopyRecursive(from, to string) error {
+	if bs, err := exec.Command("cp", "-rf", from, to).CombinedOutput(); err != nil {
+		return fmt.Errorf("FileCopyRecursiv
