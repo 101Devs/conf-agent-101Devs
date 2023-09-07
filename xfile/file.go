@@ -51,4 +51,10 @@ func FileOverwrite(fileName string, content []byte) error {
 
 func FileCopyRecursive(from, to string) error {
 	if bs, err := exec.Command("cp", "-rf", from, to).CombinedOutput(); err != nil {
-		return fmt.Errorf("FileCopyRecursiv
+		return fmt.Errorf("FileCopyRecursive fail, from: %s, to: %s, err: %s", from, to, bytes.Trim(bs, "\r\n"))
+	}
+
+	return nil
+}
+
+// RenameFileIfNotLinkFile rename oldPath to n
