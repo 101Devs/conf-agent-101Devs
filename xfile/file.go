@@ -57,4 +57,6 @@ func FileCopyRecursive(from, to string) error {
 	return nil
 }
 
-// RenameFileIfNotLinkFile rename oldPath to n
+// RenameFileIfNotLinkFile rename oldPath to newPath then link oldPath to newPath if oldPath is not a link file
+// if file is link, do nothing
+// else rename it by ne
