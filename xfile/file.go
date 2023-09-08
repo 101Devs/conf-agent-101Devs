@@ -59,4 +59,6 @@ func FileCopyRecursive(from, to string) error {
 
 // RenameFileIfNotLinkFile rename oldPath to newPath then link oldPath to newPath if oldPath is not a link file
 // if file is link, do nothing
-// else rename it by ne
+// else rename it by newPath then link it by oldPath
+func RenameFileIfNotLinkFile(oldPath, newPath string) error {
+	originPath, err := filepath.EvalSymlinks
