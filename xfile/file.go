@@ -71,4 +71,8 @@ func RenameFileIfNotLinkFile(oldPath, newPath string) error {
 		return nil
 	}
 
-	if err := os.Rename(ol
+	if err := os.Rename(oldPath, newPath); err != nil {
+		return fmt.Errorf("rename fail, oldPath: %s, newPath: %s, err: %v", oldPath, newPath, err)
+	}
+
+	retu
