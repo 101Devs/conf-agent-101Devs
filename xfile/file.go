@@ -75,4 +75,8 @@ func RenameFileIfNotLinkFile(oldPath, newPath string) error {
 		return fmt.Errorf("rename fail, oldPath: %s, newPath: %s, err: %v", oldPath, newPath, err)
 	}
 
-	retu
+	return FileLink(newPath, oldPath)
+}
+
+func FileLink(target, linkName string) error {
+	if err := exec.Command("ln", "-sf", target, linkName).Run(); err != nil {
