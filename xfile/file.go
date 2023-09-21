@@ -80,3 +80,8 @@ func RenameFileIfNotLinkFile(oldPath, newPath string) error {
 
 func FileLink(target, linkName string) error {
 	if err := exec.Command("ln", "-sf", target, linkName).Run(); err != nil {
+		return fmt.Errorf("ln -sf %s, %s fail, err: %v", target, linkName, err)
+	}
+
+	return nil
+}
