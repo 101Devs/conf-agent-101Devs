@@ -51,3 +51,99 @@ func RspBodyRawReaderOp(hr *HTTPRequest) error {
 
 	hr.RawContent, hr.err = ioutil.ReadAll(hr.Response.Body)
 	defer hr.Response.Body.Close()
+
+	return hr.err
+}
+
+func RspBodyJSONReader(ds ...interface{}) HTTPRequestOp {
+	return func(hr *HTTPRequest) error {
+		if hr.err != nil {
+			return hr.err
+		}
+		if hr.RawContent == nil {
+			if err := RspBodyRawReaderOp(hr); err != nil {
+				return err
+			}
+		}
+
+		for _, d := range ds {
+			if err := json.Unmarshal(hr.RawContent, d); err != nil {
+				return fmt.Errorf("json.Unmarshal fail, err: %v,  raw: %v", err, string(hr.RawContent))
+			}
+		}
+		return nil
+	}
+}
+
+func HTTPRequestHeaderOp(header map[string]string) HTTPRequestOp {
+	return func(hr *HTTPRequest) error {
+		for k, v := range header {
+			hr.Request.Header.Add(k, v)
+		}
+		return nil
+	}
+}
+
+func SimpleRequestOp(method, url string, body io.Reader) HTTPRequestOp {
+	return func(hr *HTTPRequest) error {
+		var err error
+		hr.Request, err = http.NewRequest(http.MethodGet, url, body)
+		return err
+	}
+}
+
+func HTTPRequestTimeoutOp(timeout time.Duration) HTTPRequestOp {
+	return func(hr *HTTPRequest) error {
+		if timeout < 1 {
+			return nil
+		}
+
+		hr.Client = &http.Client{
+			Timeout: timeout,
+		}
+
+		return nil
+	}
+}
+
+var defaultClient = &http.Client{
+	Timeout: 10 * time.Second,
+}
+
+func NewHTTPRequest() *HTTPRequest {
+	return &HTTPRequest{
+		Client: defaultClient,
+	}
+}
+
+func (hr *HTTPRequest) Decorate(ops ...HTTPRequestOp) *HTTPRequest {
+	for _, op := range ops {
+		if hr.err != nil {
+			break
+		}
+
+		hr.err = op(hr)
+	}
+	return hr
+}
+
+func (hr *HTTPRequest) Do() *HTTPRequest {
+	if hr.err != nil {
+		return hr
+	}
+
+	hr.Response, hr.err = hr.Client.Do(hr.Request)
+	return hr
+}
+
+func (hr *HTTPRequest) Err() error {
+	if hr.err == nil {
+		return nil
+	}
+
+	if hr.Request != nil {
+		return fmt.Errorf("url: %s, err: %v", hr.Request.URL.String(), hr.err)
+	}
+
+	return hr.err
+}
