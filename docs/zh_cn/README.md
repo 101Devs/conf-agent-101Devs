@@ -11,4 +11,4 @@ Detailed information about the implementation can be found [here](/docs/zh_cn/im
 
 ## About BFE
 - Official website: https://www.bfe-networks.net
-- Book: [Deep Understa
+- Book: [Deep Understanding of BFE](https://github.com/baidu/bfe-book) which introduces the technical principles of network access, the design 
