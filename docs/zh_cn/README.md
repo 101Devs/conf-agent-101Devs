@@ -11,4 +11,4 @@ Detailed information about the implementation can be found [here](/docs/zh_cn/im
 
 ## About BFE
 - Official website: https://www.bfe-networks.net
-- Book: [Deep Understanding of BFE](https://github.com/baidu/bfe-book) which introduces the technical principles of network access, the design 
+- Book: [Deep Understanding of BFE](https://github.com/baidu/bfe-book) which introduces the technical principles of network access, the design ideas of BFE, and how to build a modern network access platform based on BFE. Full text is now available for reading.
